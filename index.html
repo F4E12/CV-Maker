@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="form.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Resume Form</h1>
+        <form action="resume.html" method="GET" id="resume-form">
+            <h2>Personal Information</h2>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br>
+
+            <label for="contact">Contact Information:</label>
+            <input type="text" id="contact" name="contact" required><br>
+
+            <h2>Professional Summary</h2>
+            <textarea id="summary" name="summary" rows="5" required></textarea><br>
+
+            <h2>Work History</h2>
+            <div id="work-history-section">
+                <!-- Work history fields will be dynamically added here -->
+            </div>
+            <button type="button" id="add-work-history">Add Work History</button>
+
+            <h2>Education</h2>
+            <div id="education-section">
+                <!-- Education fields will be dynamically added here -->
+            </div>
+            <button type="button" id="add-education">Add Education</button>
+
+            <h2>Skills</h2>
+            <label for="skills">List your skills:</label>
+            <textarea id="skills" name="skills" rows="4" required></textarea><br>
+
+            <input type="submit" value="Generate Resume">
+        </form>
+    </div>
+</body>
+</html>

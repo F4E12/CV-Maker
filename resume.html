@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="name">
+                <script>document.write(decodeURIComponent(new URLSearchParams(window.location.search).get('name')));</script>
+            </h1>
+            <p class="contact">
+                <script>document.write(decodeURIComponent(new URLSearchParams(window.location.search).get('contact')));</script>
+            </p>
+        </header>
+
+        <section class="summary">
+            <h2>Professional Summary</h2>
+            <p>
+                <script>document.write(decodeURIComponent(new URLSearchParams(window.location.search).get('summary')));</script>
+            </p>
+        </section>
+
+        <section class="work-history">
+            <h2>Work History</h2>
+            <script>
+                const params = new URLSearchParams(window.location.search);
+                let workHistoryCount = 1;
+                while (params.has(`job${workHistoryCount}_title`)) {
+                    document.write(`
+                        <div class="job">
+                            <h3>${decodeURIComponent(params.get(`job${workHistoryCount}_title`))}</h3>
+                            <p>${decodeURIComponent(params.get(`job${workHistoryCount}_company`))}</p>
+                            <p>${decodeURIComponent(params.get(`job${workHistoryCount}_location`))}</p>
+                            <p>${decodeURIComponent(params.get(`job${workHistoryCount}_dates`))}</p>
+                            <p>${decodeURIComponent(params.get(`job${workHistoryCount}_duties`))}</p>
+                        </div>
+                    `);
+                    workHistoryCount++;
+                }
+            </script>
+        </section>
+
+        <section class="skills">
+            <h2>Skills</h2>
+            <p>
+                <script>document.write(decodeURIComponent(new URLSearchParams(window.location.search).get('skills')));</script>
+            </p>
+        </section>
+
+        <section class="education">
+            <h2>Education</h2>
+            <script>
+                const paramsEdu = new URLSearchParams(window.location.search);
+                let educationCount = 1;
+                while (paramsEdu.has(`education${educationCount}_details`)) {
+                    document.write(`
+                        <div class="education-entry">
+                            <p>${decodeURIComponent(paramsEdu.get(`education${educationCount}_details`))}</p>
+                        </div>
+                    `);
+                    educationCount++;
+                }
+            </script>
+        </section>
+    </div>
+</body>
+</html>

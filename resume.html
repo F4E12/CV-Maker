@@ -42,6 +42,10 @@
     <textarea name="story" id="story"></textarea>
     <button id="submit">Generate CV</button>
     <button type="button" onclick="startSpeechRecognition()">Start Speaking</button><br><br>
+
+    <button id="download-button">Download CV</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
     <script src="script.js"></script>
 
     <script>
@@ -74,6 +78,11 @@
                 alert('Speech recognition not supported in this browser. Please use Chrome or another supported browser.');
             }
         }
+
+        document.getElementById('download-button').addEventListener('click', () => {
+            const element = document.getElementById('container');
+            html2pdf().from(element).save();
+        });
     </script>
 </body>
 </html>

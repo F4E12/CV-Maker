@@ -7,65 +7,73 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <div id="container">
         <header>
-            <h1 class="name">
-                <script>document.write(decodeURIComponent(new URLSearchParams(window.location.search).get('name')));</script>
+            <h1 id="name-text">
             </h1>
-            <p class="contact">
-                <script>document.write(decodeURIComponent(new URLSearchParams(window.location.search).get('contact')));</script>
+            <p id="contact-text">
             </p>
         </header>
 
-        <section class="summary">
+        <section id="summary">
             <h2>Professional Summary</h2>
-            <p>
-                <script>document.write(decodeURIComponent(new URLSearchParams(window.location.search).get('summary')));</script>
+            <p id="summary-text">
             </p>
         </section>
 
-        <section class="work-history">
+        <section id="work-history">
             <h2>Work History</h2>
-            <script>
-                const params = new URLSearchParams(window.location.search);
-                let workHistoryCount = 1;
-                while (params.has(`job${workHistoryCount}_title`)) {
-                    document.write(`
-                        <div class="job">
-                            <h3>${decodeURIComponent(params.get(`job${workHistoryCount}_title`))}</h3>
-                            <p>${decodeURIComponent(params.get(`job${workHistoryCount}_company`))}</p>
-                            <p>${decodeURIComponent(params.get(`job${workHistoryCount}_location`))}</p>
-                            <p>${decodeURIComponent(params.get(`job${workHistoryCount}_dates`))}</p>
-                            <p>${decodeURIComponent(params.get(`job${workHistoryCount}_duties`))}</p>
-                        </div>
-                    `);
-                    workHistoryCount++;
-                }
-            </script>
+            <p id="work-history-text"></p>
         </section>
 
-        <section class="skills">
+        <section id="skills">
             <h2>Skills</h2>
-            <p>
-                <script>document.write(decodeURIComponent(new URLSearchParams(window.location.search).get('skills')));</script>
+            <p id="skills-text">
             </p>
         </section>
 
-        <section class="education">
+        <section id="education">
             <h2>Education</h2>
-            <script>
-                const paramsEdu = new URLSearchParams(window.location.search);
-                let educationCount = 1;
-                while (paramsEdu.has(`education${educationCount}_details`)) {
-                    document.write(`
-                        <div class="education-entry">
-                            <p>${decodeURIComponent(paramsEdu.get(`education${educationCount}_details`))}</p>
-                        </div>
-                    `);
-                    educationCount++;
-                }
-            </script>
+            <p id="education-text"></p>
         </section>
+        <div id="error-msg"></div>
     </div>
+    <label for="input">Input your story here: </label>
+    <textarea name="story" id="story"></textarea>
+    <button id="submit">Generate CV</button>
+    <button type="button" onclick="startSpeechRecognition()">Start Speaking</button><br><br>
+    <script src="script.js"></script>
+
+    <script>
+        function startSpeechRecognition() {
+            if ('webkitSpeechRecognition' in window) {
+                const recognition = new webkitSpeechRecognition();
+                recognition.lang = 'en-US';
+                recognition.continuous = false;
+                recognition.interimResults = false;
+
+                recognition.onstart = function() {
+                    console.log('Speech recognition started');
+                };
+
+                recognition.onresult = function(event) {
+                    const transcript = event.results[0][0].transcript;
+                    document.getElementById('story').value += transcript + ' ';
+                };
+
+                recognition.onerror = function(event) {
+                    console.error('Speech recognition error', event);
+                };
+
+                recognition.onend = function() {
+                    console.log('Speech recognition ended');
+                };
+
+                recognition.start();
+            } else {
+                alert('Speech recognition not supported in this browser. Please use Chrome or another supported browser.');
+            }
+        }
+    </script>
 </body>
 </html>

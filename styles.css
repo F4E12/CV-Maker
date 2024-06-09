@@ -6,7 +6,7 @@ body {
     padding: 0;
 }
 
-.container {
+#container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
@@ -18,19 +18,23 @@ header {
     margin-bottom: 20px;
 }
 
-.name {
+#name {
     font-size: 32px;
     font-weight: bold;
     color: #27ae60; /* Light green color */
 }
 
-.contact {
+#contact {
     font-size: 14px;
     color: #333;
 }
 
-.summary, .work-history, .skills, .education {
+#summary, #work-history, #skills, #education {
     margin-bottom: 20px;
+}
+
+#error-msg{
+    color: red;
 }
 
 h2 {
@@ -40,21 +44,21 @@ h2 {
     margin-bottom: 10px;
 }
 
-.job {
+#job {
     margin-bottom: 15px;
 }
 
-.job h3 {
+#job h3 {
     font-size: 18px;
     color: #000;
 }
 
-.job p {
+#job p {
     margin: 5px 0;
     color: #666;
 }
 
-.skills p, .education p {
+#skills p, #education p {
     margin: 5px 0;
 }
 

@@ -91,3 +91,14 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #2ecc71;
 }
+
+#transcript {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.transcript-line {
+    margin-top: 10px;
+}
+
